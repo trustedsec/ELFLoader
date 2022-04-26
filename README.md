@@ -1,8 +1,7 @@
 # ELFLoader
 
 This is a ELF object in memory loader/runner. The goal is to create a single 
-elf loader that can be used to run follow on capabilities across all x86_64 and  
-x86 nix operating systems.
+elf loader that can be used to run follow on capabilities across all x86_64 and x86 nix operating systems.
 
 ## How it works
 The way this loader works is that it has all the code needed to build and load
