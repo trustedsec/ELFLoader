@@ -55,4 +55,5 @@ uint32_t swap_endianess(uint32_t indata);
 
 char* BeaconGetOutputData(int *outsize);
 char** getEnviron(void);
+char* getOSName(void);
 #endif

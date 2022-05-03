@@ -13,8 +13,8 @@ typedef struct beacon_function{
     void* function;
 } beacon_function_t;
 
-extern beacon_function_t BeaconInternalMapping[17];
-#define BEACONINTERNALMAPPINGCOUNT 16
+extern beacon_function_t BeaconInternalMapping[18];
+#define BEACONINTERNALMAPPINGCOUNT 17
 
 void* internalFunctionLookup(char* symbolName);
 /* Structures as is in beacon.h */
@@ -63,4 +63,5 @@ uint32_t swap_endianess(uint32_t indata);
 
 char* BeaconGetOutputData(int *outsize);
 char** getEnviron(void);
+char* getOSName(void);
 #endif

@@ -33,7 +33,7 @@ extern char** environ;
 
 /* Data Parsing */
 
-beacon_function_t BeaconInternalMapping[17] = {
+beacon_function_t BeaconInternalMapping[18] = {
     {"BeaconDataParse", (void*)BeaconDataParse},
     {"BeaconDataInt", (void*)BeaconDataInt},
     {"BeaconDataShort", (void*)BeaconDataShort},
@@ -49,12 +49,27 @@ beacon_function_t BeaconInternalMapping[17] = {
     {"BeaconPrintf", (void*)BeaconPrintf},
     {"BeaconOutput", (void*)BeaconOutput},
     {"BeaconIsAdmin", (void*)BeaconIsAdmin},
-    {"getEnviron", (void*)getEnviron}
+    {"getEnviron", (void*)getEnviron},
+    {"getOSName", (void*)getOSName}
 };
 
 
 char** getEnviron(void){
     return environ;
+}
+
+char* getOSName(void){
+#ifdef __APPLE__
+    return "apple";
+#elif __FreeBSD__
+    return "freebsd";
+#elif __OpenBSD__
+    return "openbsd";
+#elif __linux__
+    return "lin";
+#else
+    return "unk";
+#endif
 }
 
 #ifdef _WIN32
