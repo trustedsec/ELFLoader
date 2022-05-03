@@ -9,6 +9,12 @@ x86_64:
 x86_64D:
 	gcc -g -DDEBUG -Wall -I ./includes/ -DTESTING_MAIN $(SOURCES) -ldl -o ELFLoaderD.out
 
+x86_64_bsd:
+	gcc -Wall -I ./includes/ -DTESTING_MAIN $(SOURCES) -o ELFLoader_bsd.out
+
+x86_64_bsdD:
+	gcc -Wall -I ./includes/ -DDEBUG -DTESTING_MAIN $(SOURCES) -o ELFLoader_bsd.out
+
 win64:
 	x86_64-w64-mingw32-gcc -I ./includes/ -DTESTING_MAIN $(SOURCES) -o ELFLoader_win64.exe
 

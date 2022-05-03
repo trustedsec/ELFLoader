@@ -23,7 +23,7 @@
 
 #define X86PATH "System32"
 #define X64PATH "sysnative"
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(__FreeBSD__) || defined(__OpenBSD__)
 #define INTERNAL_DEFAULT_LIBRARY ((void*) -2)
 #else
 #define INTERNAL_DEFAULT_LIBRARY NULL
