@@ -1,5 +1,5 @@
 
-all: x86_64 x86 mac_x86_64 test2_dup test2 test whoami whoami32 tasklist tasklist32 cat cat32 uname uname32 id id32 uname uname32 walk walk32 grep grep32 find find32 chmod chmod32 env env32 pwd pwd32 ifconfig ifconfig32
+all: x86_64 x86 test2_dup test2 test whoami whoami32 tasklist tasklist32 cat cat32 uname uname32 id id32 uname uname32 walk walk32 grep grep32 find find32 chmod chmod32 env env32 pwd pwd32 ifconfig ifconfig32
 
 SOURCES:=./src/beacon_compatibility.c ./src/ELFLoader.c
 
@@ -8,18 +8,6 @@ x86_64:
 
 x86_64D:
 	gcc -g -DDEBUG -Wall -I ./includes/ -DTESTING_MAIN $(SOURCES) -ldl -o ELFLoaderD.out
-
-mac_x86_64:
-	x86_64-apple-darwin20-clang -Wall -I ./includes/ -DTESTING_MAIN $(SOURCES) -ldl -o ELFLoader_mac.out
-
-mac_x86_64D:
-	x86_64-apple-darwin20-clang -g -DDEBUG -I ./includes/ -DTESTING_MAIN $(SOURCES) -ldl -o ELFLoaderD_mac.out
-
-mac_aarch64:
-	aarch64-apple-darwin20-clang -Wall -I ./includes/ -DTESTING_MAIN $(SOURCES) -ldl -o ELFLoader_mac_aarch64.out
-
-mac_aarch64D:
-	aarch64-apple-darwin20-clang -g -DDEBUG -Wall -I ./includes/ -DTESTING_MAIN $(SOURCES) -ldl -o ELFLoaderD_mac_aarch64.out
 
 win64:
 	x86_64-w64-mingw32-gcc -I ./includes/ -DTESTING_MAIN $(SOURCES) -o ELFLoader_win64.exe
