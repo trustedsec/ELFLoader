@@ -108,3 +108,10 @@ b'1900000004000000373737000d0000002f746d702f746573742e736800'
 ```
 ./ELFLoader.out ./SA/src/chmod.o 1900000004000000373737000d0000002f746d702f746573742e736800
 ```
+
+### Example of uname
+This is the generic example that doesn't take any arguments.
+
+```
+./ELFLoader.out SA/src/uname.o
+```
