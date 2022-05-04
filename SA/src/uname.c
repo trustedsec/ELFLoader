@@ -23,7 +23,7 @@ int run_uname(void){
         retcode = uname(&values);
         BeaconPrintf(CALLBACK_OUTPUT, "%s %s %s %s %s\n", values.sysname, values.nodename, values.release, values.version, values.machine);
     }
-    else if (strcmp("apple", osversion) == 0){
+    else if (strcmp("apple", osversion) == 0 || strcmp("freebsd", osversion) == 0|| strcmp("openbsd", osversion) == 0){
         retcode = uname((struct utsname*)&values_mac);
         BeaconPrintf(CALLBACK_OUTPUT, "%s %s %s %s %s\n", values_mac.sysname, values_mac.nodename, values_mac.release, values_mac.version, values_mac.machine);
     }

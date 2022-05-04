@@ -56,6 +56,7 @@ int ELFRunner(char* functionName, unsigned char* elfObjectData, unsigned int siz
     int c2 = 0;
     int (*ptr)(unsigned char*, int) = (int (*)(unsigned char *, int))NULL;
     int retcode = 0;
+    int tempOffsetCounter = 0;
    
     memset(&elfinfo, 0, sizeof(ELFInfo_t));
     
@@ -119,6 +120,7 @@ int ELFRunner(char* functionName, unsigned char* elfObjectData, unsigned int siz
     elfinfo.tempOffsetTable = VirtualAlloc(NULL, 255*ThunkTrampolineSize, MEM_COMMIT|MEM_RESERVE|MEM_TOP_DOWN, PAGE_EXECUTE_READWRITE);
     #else
     elfinfo.tempOffsetTable = mmap(NULL, 255*ThunkTrampolineSize, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    tempOffsetCounter += 0x5000;
     #endif
     elfinfo.tempOffsetCounter = 0;
     if (elfinfo.tempOffsetTable == NULL || elfinfo.tempOffsetTable == (void*)-1){
@@ -147,7 +149,8 @@ int ELFRunner(char* functionName, unsigned char* elfObjectData, unsigned int siz
             #ifdef WIN32
             elfinfo.sectionMappings[counter] = VirtualAlloc(NULL, elfinfo.sectHeader[counter].sh_size, MEM_COMMIT|MEM_RESERVE|MEM_TOP_DOWN, PAGE_EXECUTE_READWRITE);
             #else
-            elfinfo.sectionMappings[counter] = mmap(NULL, elfinfo.sectHeader[counter].sh_size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+            elfinfo.sectionMappings[counter] = mmap(elfinfo.tempOffsetTable+tempOffsetCounter, elfinfo.sectHeader[counter].sh_size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+            tempOffsetCounter += 0x5000;
             #endif
             if (elfinfo.sectionMappings[counter] == NULL || elfinfo.sectionMappings[counter] == (void*)-1){
                 DEBUG_PRINT("\t\t\tFailed to allocate memory for section\n");
