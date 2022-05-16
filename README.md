@@ -115,3 +115,11 @@ This is the generic example that doesn't take any arguments.
 ```
 ./ELFLoader.out SA/src/uname.o
 ```
+
+### Runner and Library Example
+
+```
+make x86_64so
+make x86_64runner
+LD_LIBRARY_PATH=. ./runner.out ./SA/src/env.o
+```

@@ -14,7 +14,9 @@
 #include "ELFLoader.h"
 #include "beacon_compatibility.h"
 
-
+#ifdef LIBRARY
+__attribute__ ((visibility ("default")))
+#endif
 unsigned char* unhexlify(unsigned char* value, int *outlen){
     unsigned char* retval = NULL;
     char byteval[3] = {0};
@@ -48,7 +50,9 @@ errcase:
     return retval;
 }
 
-
+#ifdef LIBRARY
+__attribute__ ((visibility ("default")))
+#endif
 int ELFRunner(char* functionName, unsigned char* elfObjectData, unsigned int size, unsigned char* argumentdata, int argumentSize){
 #if defined(__amd64__) || defined(__x86_64__) || defined(__i386__) || (defined(DEBUG) && defined(ELFRUNNERTEST))
     ELFInfo_t elfinfo;

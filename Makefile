@@ -9,6 +9,12 @@ x86_64:
 x86_64D:
 	gcc -g -DDEBUG -Wall -I ./includes/ -DTESTING_MAIN $(SOURCES) -ldl -o ELFLoaderD.out
 
+x86_64so:
+	gcc -shared -fPIC -fvisibility=hidden -DLIBRARY -Wall -I ./includes/ -DTESTING_MAIN $(SOURCES) -ldl -o libELFLoader.so
+
+x86_64runner:
+	gcc -I ./includes/ runner.c -o runner.out -L . -lELFLoader
+
 x86_64_bsd:
 	gcc -Wall -I ./includes/ -DTESTING_MAIN $(SOURCES) -o ELFLoader_bsd.out
 
@@ -124,4 +130,5 @@ clean:
 	rm -f ./SA/src/*.o
 	rm -f testobjects/*.o
 	rm -f ELFLoader_public
+	rm -f libELFLoader.so
 .PHONY: x86_64 x86_64D test2_dup test2 test clean

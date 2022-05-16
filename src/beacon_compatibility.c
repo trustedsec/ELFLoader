@@ -318,6 +318,9 @@ int BeaconIsAdmin(void){
     return 0;
 }
 
+#ifdef LIBRARY
+__attribute__ ((visibility ("default")))
+#endif
 char* BeaconGetOutputData(int *outsize){
     char* outdata = beacon_compatibility_output;
     *outsize = beacon_compatibility_size;
